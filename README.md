@@ -1,5 +1,7 @@
 # CROPWAT 技能使用说明
 
+[![CI](https://github.com/HeIIoAgain/cropwat-skills/actions/workflows/ci.yml/badge.svg)](https://github.com/HeIIoAgain/cropwat-skills/actions/workflows/ci.yml)
+
 给 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)（DSH）用的两个**技能**，
 把 **FAO CROPWAT 8.0** 的完整流程自动化、批量化处理 —— 从原始气象数据一路算到作物需水量结果表。
 使用这些Skill，可将原本需要手动操作数月的测算过程在数天内自动化完成！同时可一次性批量化处理大量数据！
