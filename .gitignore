@@ -1,0 +1,43 @@
+# --- Python ---------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# --- Virtualenv -----------------------------------------------------------
+.venv/
+venv/
+env/
+
+# --- Runtime state / credentials -- never commit --------------------------
+state/
+*.log
+.env
+.env.*
+credentials.json
+*.token
+*.pem
+*.key
+*.p12
+
+# --- Generated artefacts --------------------------------------------------
+*.urf
+out/
+
+# --- Editors / OS ---------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+desktop.ini

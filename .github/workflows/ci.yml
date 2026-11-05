@@ -1,0 +1,48 @@
+name: CI
+
+# 本仓库是 DSH 技能目录（Python 脚本，无第三方运行时依赖）。
+# 检查项都是确定性的，不会因为 runner 环境差异变红：
+#   1. 所有脚本能被 Python 解析（语法门禁）
+#   2. 仓库结构完整（SKILL.md / README / LICENSE 存在）
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Python ${{ matrix.python }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.12", "3.13"]
+    env:
+      PYTHONUTF8: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Syntax check (compileall)
+        run: python -m compileall -q cropwat cropwat-inputs
+
+      - name: Repository structure
+        run: |
+          test -f cropwat/SKILL.md
+          test -f cropwat-inputs/SKILL.md
+          test -f README.md
+          test -f LICENSE
